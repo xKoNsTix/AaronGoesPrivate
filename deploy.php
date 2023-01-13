@@ -7,12 +7,12 @@ set('repository','git@github.com:xkonstix/AaronGoesPrivate');
 
 set('shared_files', ['public/wp-config.php', 'public/.htaccess']);
 set('shared_dirs', ['public/wp-content/uploads']);
-
+set('keep_releases', 3);
 
 
 
 // Hosts
-host('lillesand')
+host('88.198.150.108')
         ->set('remote_user','aaron')    
 
         ->set('deploy_path', '/var/www/aaron');
@@ -37,7 +37,10 @@ task('deploy', [
      'deploy:publish'
 ]);
 
-
+task('delete_src_folder', function () {
+        run('rm -rf {{release_path}}/src');
+    });
 
 // [Optional] If deploy fails automatically unlock.
+after('deploy', 'delete_src_folder');
 after('deploy:failed', 'deploy:unlock');
