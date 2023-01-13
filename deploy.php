@@ -24,7 +24,7 @@ set('shared_dirs', ['public/wp-content/uploads']);
 host('193.170.119.200')
         ->set('remote_user', 'admin')
 
-         ->set('become', 'root')
+        //  ->set('become', 'root')
         ->set('port', '5412')
         ->set('deploy_path', '/var/www/aaron');
         // ->set('deploy_path', '~/app');
