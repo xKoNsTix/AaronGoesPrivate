@@ -26,7 +26,7 @@ host('193.170.119.200')
 
          ->set('become', 'root')
         ->set('port', '5412')
-        ->set('deploy_path', '/home/admin/aaron');
+        ->set('deploy_path', '/var/www/aaron');
         // ->set('deploy_path', '~/app');
 
 // Composer
@@ -55,9 +55,9 @@ task('deploy', [
 ]);
 
 
-task('delete_src_folder', function () {
-        run('rm -rf {{release_path}}/src');
-});
+// task('delete_src_folder', function () {
+//         run('rm -rf {{release_path}}/src');
+// });
 // [Optional] If deploy fails automatically unlock.
-after('deploy', 'delete_src_folder');
+// after('deploy', 'delete_src_folder');
 after('deploy:failed', 'deploy:unlock');
